@@ -1,7 +1,5 @@
 const express = require("express");
-
 const login = require("../controller/login.js");
-
 const createUser = require("../controller/signup.js");
 const { authenticate } = require("../middlewares/auth.js");
 
