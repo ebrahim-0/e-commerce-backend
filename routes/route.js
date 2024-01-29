@@ -13,7 +13,14 @@ router.get("/logout", (req, res) => {
 });
 
 router.get("/profile", authenticate, (req, res) => {
-  res.json({ message: `Welcome ${req.user.name}`, user: req.user });
+  res.json({
+    message: `Welcome ${req.user.name}`,
+    token,
+    email: user.email,
+    name: user.name,
+    role: user.role,
+    phoneNumber: user.phoneNumber,
+  });
 });
 
 module.exports = router;
