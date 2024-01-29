@@ -16,10 +16,10 @@ router.get("/profile", authenticate, (req, res) => {
   res.json({
     message: `Welcome ${req.user.name}`,
     token,
-    email: user.email,
-    name: user.name,
-    role: user.role,
-    phoneNumber: user.phoneNumber,
+    email: req.user.email,
+    name: req.user.name,
+    role: req.user.role,
+    phoneNumber: req.user.phoneNumber,
   });
 });
 
