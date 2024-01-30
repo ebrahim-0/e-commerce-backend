@@ -21,7 +21,7 @@ router.get("/profile", authenticate, (req, res) => {
       role: req.user.role,
       phoneNumber: req.user.phoneNumber,
     },
-    token: req.cookies.token,
+    token: res.cookie.token,
   });
 });
 
