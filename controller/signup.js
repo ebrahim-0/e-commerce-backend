@@ -6,7 +6,7 @@ const createUser = async (req, res) => {
   const { name, email, password, phoneNumber, role = "user" } = req.body;
 
   try {
-    if (!(name && email && password && phoneNumber && role)) {
+    if (!(name && email && password && phoneNumber)) {
       res.status(400).send("All input is required");
     }
 
