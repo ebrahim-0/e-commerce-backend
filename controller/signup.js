@@ -3,10 +3,10 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 
 const createUser = async (req, res) => {
-  const { name, email, password, phoneNumber } = req.body;
+  const { name, email, password, phoneNumber, role = "user" } = req.body;
 
   try {
-    if (!(name && email && password && phoneNumber)) {
+    if (!(name && email && password && phoneNumber && role)) {
       res.status(400).send("All input is required");
     }
 
@@ -24,6 +24,7 @@ const createUser = async (req, res) => {
       email,
       password: hashedPassword,
       phoneNumber,
+      role,
     });
 
     await user.save();
