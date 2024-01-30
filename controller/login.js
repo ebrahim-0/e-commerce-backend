@@ -20,10 +20,19 @@ const login = async (req, res) => {
     return res.status(404).json({ message: "Incorrect Password" });
   }
 
-  const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, {
-    expiresIn: "1 hour",
-  });
-
+  const token = jwt.sign(
+    {
+      userId: user._id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      phoneNumber: user.phoneNumber,
+    },
+    process.env.SECRET_KEY,
+    {
+      expiresIn: "1 hour",
+    }
+  );
   res.cookie("token", token, {
     httpOnly: true,
     secure: true,
