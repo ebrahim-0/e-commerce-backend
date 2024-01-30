@@ -15,13 +15,13 @@ router.get("/logout", (req, res) => {
 router.get("/profile", authenticate, (req, res) => {
   res.json({
     message: `Welcome ${req.user.name}`,
-    token: req.cookies.token,
     user: {
       name: req.user.name,
       email: req.user.email,
       role: req.user.role,
       phoneNumber: req.user.phoneNumber,
     },
+    token: req.cookies.token,
   });
 });
 
