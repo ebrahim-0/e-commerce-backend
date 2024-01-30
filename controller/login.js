@@ -32,10 +32,13 @@ const login = async (req, res) => {
 
   res.json({
     message: "User Login Successfully",
+    user: {
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      phoneNumber: user.phoneNumber,
+    },
     token,
-    name: user.name,
-    role: user.role,
-    phoneNumber: user.phoneNumber,
   });
 };
 

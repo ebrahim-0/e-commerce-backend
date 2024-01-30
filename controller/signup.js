@@ -43,10 +43,13 @@ const createUser = async (req, res) => {
 
     res.json({
       message: "User Created Successfully",
+      user: {
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        phoneNumber: user.phoneNumber,
+      },
       token,
-      name: user.name,
-      role: user.role,
-      phoneNumber: user.phoneNumber,
     });
   } catch (error) {
     console.log("Got an error", error);
