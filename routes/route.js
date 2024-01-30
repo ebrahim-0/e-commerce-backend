@@ -15,7 +15,6 @@ router.get("/logout", (req, res) => {
 router.get("/profile", authenticate, (req, res) => {
   res.json({
     message: `Welcome ${req.user.name}`,
-    token,
     email: req.user.email,
     name: req.user.name,
     role: req.user.role,
