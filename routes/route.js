@@ -2,9 +2,13 @@ const express = require("express");
 const login = require("../controller/login.js");
 const createUser = require("../controller/signup.js");
 const { authenticate } = require("../middlewares/auth.js");
+const product = require("../controller/product.js");
+const productDetails = require("../controller/productDetails.js");
 
 const router = express.Router();
 
+router.post("/products", product);
+router.post("/productDetails", productDetails);
 router.post("/signup", createUser);
 router.post("/login", login);
 router.get("/logout", (req, res) => {
