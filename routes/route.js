@@ -5,11 +5,14 @@ const { authenticate } = require("../middlewares/auth.js");
 const product = require("../controller/product.js");
 const productDetails = require("../controller/productDetails.js");
 const getProducts = require("../controller/getProducts.js");
+const getProductDetails = require("../controller/getProductDetails.js");
 
 const router = express.Router();
 
 router.post("/products", product);
 router.post("/productDetails", productDetails);
+router.get("/getProductDetails", getProductDetails);
+
 router.get("/products", getProducts);
 router.post("/signup", createUser);
 router.post("/login", login);
