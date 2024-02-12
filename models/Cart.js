@@ -6,6 +6,10 @@ const cartSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  updatedAt: {
+    type: Date,
+    default: Date.now,
+  },
 
   items: [
     {
@@ -13,7 +17,6 @@ const cartSchema = new mongoose.Schema({
       quantity: Number,
     },
   ],
-  totalPrice: Number,
 });
 
 const Cart = mongoose.model("Cart", cartSchema);
