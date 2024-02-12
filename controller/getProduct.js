@@ -3,8 +3,6 @@ const Product = require("../models/Product");
 const getProduct = async (req, res) => {
   const { asin } = req.query;
 
-  console.log("asin", asin);
-
   try {
     const product = await Product.findOne({ asin });
     res.json(product);
