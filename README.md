@@ -96,7 +96,7 @@
 - **add the token in headers**
 
   `headers: {
-  Authorization: Bearer ${token},
+    Authorization: Bearer ${token},
 }`
 
 - **Request Body:**
