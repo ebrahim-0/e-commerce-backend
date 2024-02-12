@@ -42,6 +42,7 @@ const login = async (req, res) => {
   res.json({
     message: "User Login Successfully",
     user: {
+      userId: user._id,
       name: user.name,
       email: user.email,
       role: user.role,
