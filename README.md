@@ -37,6 +37,10 @@
 - **Method:** `GET`
 - **Description:** Retrieves the profile of the currently logged-in user.
 - **Authentication required.**
+  ** add the token in headers**
+  headers: {
+  Authorization: `Bearer ${token}`,
+  }
 - **Response:** JSON object representing the user's profile.
 
 ## Products
@@ -87,6 +91,10 @@
 - **Method:** `POST`
 - **Description:** Adds a product to the user's cart.
 - **Authentication required.**
+  ** add the token in headers**
+  headers: {
+  Authorization: `Bearer ${token}`,
+  }
 - **Request Body:**
   - `asin` (String, required): Amazon Standard Identification Number.
   - `quantity` (Number, optional): Quantity of the product to add (default is 1).
@@ -98,6 +106,10 @@
 - **Method:** `DELETE`
 - **Description:** Clears all items from the user's cart.
 - **Authentication required.**
+  ** add the token in headers**
+  headers: {
+  Authorization: `Bearer ${token}`,
+  }
 - **Response:** No content.
 
 ### Delete from Cart
@@ -106,10 +118,10 @@
 - **Method:** `DELETE`
 - **Description:** Deletes a specific product from the user's cart.
 - **Authentication required.**
-  add the token in headers
-  `headers: {
+  ** add the token in headers**
+  headers: {
   Authorization: `Bearer ${token}`,
-}`
+  }
   - **Path Parameters:**
   - `asin` (String, required): Amazon Standard Identification Number of the product to delete.
 - **Response:** JSON object representing the updated cart.
@@ -120,12 +132,11 @@
 - **Method:** `PUT`
 - **Description:** Decrements the quantity of a product in the user's cart.
 - **Authentication required.**
-  **
-  add the token in headers
+  ** add the token in headers**
   headers: {
   Authorization: `Bearer ${token}`,
-  },
-  **
+  }
+
 - **Path Parameters:**
   - `asin` (String, required): Amazon Standard Identification Number of the product to decrement quantity.
 - **Request Body:**
@@ -138,4 +149,8 @@
 - **Method:** `GET`
 - **Description:** Retrieves the user's cart.
 - **Authentication required.**
+  ** add the token in headers**
+  headers: {
+  Authorization: `Bearer ${token}`,
+  }
 - **Response:** JSON object representing the user's cart.
