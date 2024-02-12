@@ -8,18 +8,19 @@ const getProducts = require("../controller/getProducts.js");
 const getProductDetails = require("../controller/getProductDetails.js");
 const addToCart = require("../controller/addToCart.js");
 const cart = require("../controller/cart.js");
+const getProduct = require("../controller/getProduct.js");
 
 const router = express.Router();
 
 router.post("/products", product);
 router.post("/productDetails", productDetails);
 router.get("/getProductDetails", getProductDetails);
+router.get("/products", getProducts);
+router.get("/product", getProduct);
 
 router.post("/add-to-cart", authenticate, addToCart);
-
 router.get("/cart", authenticate, cart);
 
-router.get("/products", getProducts);
 router.post("/signup", createUser);
 router.post("/login", login);
 router.get("/logout", (req, res) => {
