@@ -1,7 +1,9 @@
 const Product = require("../models/Product");
 
 const getProduct = async (req, res) => {
-  const { asin } = req.query;
+  const { asin } = req.params;
+
+  console.log("asin", asin);
 
   try {
     const product = await Product.findOne({ asin });
