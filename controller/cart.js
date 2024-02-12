@@ -34,7 +34,11 @@ const addToCart = async (req, res) => {
     }
 
     await cart.save();
-    res.json(cart);
+    res.json({
+      message: "Product added successfully to Your cart",
+      cart,
+      numberOfItems: cart.items.length,
+    });
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
@@ -46,7 +50,7 @@ const clearCart = async (req, res) => {
 
   try {
     await Cart.findOneAndDelete({ userId });
-    res.status(204).send(); // No Content
+    res.status(204).send(); // No content
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
@@ -65,7 +69,11 @@ const deleteFromCart = async (req, res) => {
 
     cart.items = cart.items.filter((item) => item.asin !== asinToDelete);
     await cart.save();
-    res.json(cart);
+    res.json({
+      message: "Product removed successfully from Your cart",
+      cart,
+      numberOfItems: cart.items.length,
+    });
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
@@ -97,7 +105,11 @@ const decrementQuantity = async (req, res) => {
     }
 
     await cart.save();
-    res.json(cart);
+    res.json({
+      message: "Product quantity updated successfully in Your cart",
+      cart,
+      numberOfItems: cart.items.length,
+    });
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
