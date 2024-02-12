@@ -149,7 +149,7 @@
 - **Method:** `GET`
 - **Description:** Retrieves the user's cart.
 - **Authentication required.**
-  ** add the token in headers**
+- ** add the token in headers**
   headers: {
   Authorization: `Bearer ${token}`,
   }
