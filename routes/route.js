@@ -72,4 +72,10 @@ router.get("/me", authenticate, (req, res) => {
   });
 });
 
+router.get("/", (req, res) => {
+  res.json({
+    message: "e-commerce-api",
+  });
+});
+
 module.exports = router;
