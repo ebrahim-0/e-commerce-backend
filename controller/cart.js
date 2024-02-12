@@ -33,9 +33,11 @@ const addToCart = async (req, res) => {
       cart.items.push({ asin, quantity });
     }
 
-    const totalPrice = cart.items.reduce((acc, item) => {
-      return acc + item.quantity;
-    }, 0);
+    const totalPrice = cart.items.reduce(
+      (total, product) =>
+        total + parseFloat(product.price.substring(1)) * product.quantity,
+      0
+    );
     cart.totalPrice = totalPrice;
     await cart.save();
 
@@ -74,9 +76,12 @@ const deleteFromCart = async (req, res) => {
 
     cart.items = cart.items.filter((item) => item.asin !== asinToDelete);
 
-    const totalPrice = cart.items.reduce((acc, item) => {
-      return acc + item.quantity;
-    }, 0);
+    const totalPrice = cart.items.reduce(
+      (total, product) =>
+        total + parseFloat(product.price.substring(1)) * product.quantity,
+      0
+    );
+
     cart.totalPrice = totalPrice;
     await cart.save();
 
@@ -115,9 +120,12 @@ const decrementQuantity = async (req, res) => {
       existingItem.quantity -= quantityToSubtract;
     }
 
-    const totalPrice = cart.items.reduce((acc, item) => {
-      return acc + item.quantity;
-    }, 0);
+    const totalPrice = cart.items.reduce(
+      (total, product) =>
+        total + parseFloat(product.price.substring(1)) * product.quantity,
+      0
+    );
+
     cart.totalPrice = totalPrice;
 
     await cart.save();
