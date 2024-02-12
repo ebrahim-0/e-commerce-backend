@@ -4,7 +4,7 @@
 
 ### Sign Up
 
-- **URL:** `/signup`
+- **URL:** `/api/signup`
 - **Method:** `POST`
 - **Description:** Creates a new user account.
 - **Request Body:**
@@ -16,7 +16,7 @@
 
 ### Log In
 
-- **URL:** `/login`
+- **URL:** `/api/login`
 - **Method:** `POST`
 - **Description:** Logs in an existing user.
 - **Request Body:**
@@ -26,14 +26,14 @@
 
 ### Log Out
 
-- **URL:** `/logout`
+- **URL:** `/api/logout`
 - **Method:** `GET`
 - **Description:** Logs out the current user by clearing the authentication token.
 - **Response:** JSON object with a logout message.
 
 ### Get User Profile
 
-- **URL:** `/me`
+- **URL:** `/api/me`
 - **Method:** `GET`
 - **Description:** Retrieves the profile of the currently logged-in user.
 - **Authentication required.**
@@ -43,7 +43,7 @@
 
 ### Add a Product
 
-- **URL:** `/products`
+- **URL:** `/api/products`
 - **Method:** `POST`
 - **Description:** Adds a new product to the database.
 - **Request Body:**
@@ -65,14 +65,14 @@
 
 ### Get All Products
 
-- **URL:** `/products`
+- **URL:** `/api/products`
 - **Method:** `GET`
 - **Description:** Retrieves all products from the database.
 - **Response:** Array of JSON objects representing products.
 
 ### Get Product Details
 
-- **URL:** `/getProductDetails`
+- **URL:** `/api/getProductDetails`
 - **Method:** `GET`
 - **Description:** Retrieves detailed information about a product using its ASIN.
 - **Query Parameters:**
@@ -83,7 +83,7 @@
 
 ### Add to Cart
 
-- **URL:** `/add-to-cart`
+- **URL:** `/api/add-to-cart`
 - **Method:** `POST`
 - **Description:** Adds a product to the user's cart.
 - **Authentication required.**
@@ -94,7 +94,7 @@
 
 ### Clear Cart
 
-- **URL:** `/clear-cart`
+- **URL:** `/api/clear-cart`
 - **Method:** `DELETE`
 - **Description:** Clears all items from the user's cart.
 - **Authentication required.**
@@ -102,20 +102,30 @@
 
 ### Delete from Cart
 
-- **URL:** `/delete/:asin`
+- **URL:** `/api/delete/:asin`
 - **Method:** `DELETE`
 - **Description:** Deletes a specific product from the user's cart.
 - **Authentication required.**
-- **Path Parameters:**
+  add the token in headers
+  `headers: {
+  Authorization: `Bearer ${token}`,
+}`
+  - **Path Parameters:**
   - `asin` (String, required): Amazon Standard Identification Number of the product to delete.
 - **Response:** JSON object representing the updated cart.
 
 ### Decrement Quantity
 
-- **URL:** `/decrement/:asin`
+- **URL:** `/api/decrement/:asin`
 - **Method:** `PUT`
 - **Description:** Decrements the quantity of a product in the user's cart.
 - **Authentication required.**
+  **
+  add the token in headers
+  headers: {
+  Authorization: `Bearer ${token}`,
+  },
+  **
 - **Path Parameters:**
   - `asin` (String, required): Amazon Standard Identification Number of the product to decrement quantity.
 - **Request Body:**
@@ -124,7 +134,7 @@
 
 ### Get Cart
 
-- **URL:** `/cart`
+- **URL:** `/api/cart`
 - **Method:** `GET`
 - **Description:** Retrieves the user's cart.
 - **Authentication required.**
