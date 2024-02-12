@@ -1,7 +1,7 @@
 const Product = require("../models/Product");
 
 const getProduct = async (req, res) => {
-  const { asin } = req.params;
+  const { asin } = req.query;
 
   console.log("asin", asin);
 
