@@ -54,7 +54,6 @@ const createUser = async (req, res) => {
     res.json({
       message: "User Created Successfully",
       user: {
-        userId: user._id,
         name: user.name,
         email: user.email,
         role: user.role,
