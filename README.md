@@ -40,8 +40,8 @@
 - **add the token in headers**
 
   `headers: {
-  Authorization: Bearer ${token},
- }`
+ Authorization: Bearer ${token},
+}`
 
 - **Response:** JSON object representing the user's profile.
 
@@ -97,7 +97,7 @@
 
   `headers: {
   Authorization: Bearer ${token},
- }`
+}`
 
 - **Request Body:**
   - `asin` (String, required): Amazon Standard Identification Number.
@@ -114,7 +114,7 @@
 
   `headers: {
   Authorization: Bearer ${token},
- }`
+}`
 
 - **Response:** No content.
 
@@ -128,7 +128,7 @@
 
   `headers: {
   Authorization: Bearer ${token},
- }`
+}`
 
 - **Path Parameters:**
 - `asin` (String, required): Amazon Standard Identification Number of the product to delete.
@@ -144,7 +144,7 @@
 
   `headers: {
   Authorization: Bearer ${token},
- }`
+}`
 
 - **Path Parameters:**
   - `asin` (String, required): Amazon Standard Identification Number of the product to decrement quantity.
@@ -162,6 +162,6 @@
 
   `headers: {
   Authorization: Bearer ${token},
- }`
+}`
 
 - **Response:** JSON object representing the user's cart.
