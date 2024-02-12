@@ -23,7 +23,7 @@ const addToCart = async (req, res) => {
   try {
     let cart = await Cart.findOne({ userId });
     if (!cart) {
-      cart = new Cart({ userId, items: [] });
+      cart = new Cart({ userId, items: [], totalPrice: 0 });
     }
 
     const existingItem = cart.items.find((item) => item.asin === asin);
@@ -33,7 +33,12 @@ const addToCart = async (req, res) => {
       cart.items.push({ asin, quantity });
     }
 
+    const totalPrice = cart.items.reduce((acc, item) => {
+      return acc + item.quantity;
+    }, 0);
+    cart.totalPrice = totalPrice;
     await cart.save();
+
     res.json({
       message: "Product added successfully to Your cart",
       cart,
@@ -68,7 +73,13 @@ const deleteFromCart = async (req, res) => {
     }
 
     cart.items = cart.items.filter((item) => item.asin !== asinToDelete);
+
+    const totalPrice = cart.items.reduce((acc, item) => {
+      return acc + item.quantity;
+    }, 0);
+    cart.totalPrice = totalPrice;
     await cart.save();
+
     res.json({
       message: "Product removed successfully from Your cart",
       cart,
@@ -103,6 +114,11 @@ const decrementQuantity = async (req, res) => {
       // Otherwise, decrement the quantity
       existingItem.quantity -= quantityToSubtract;
     }
+
+    const totalPrice = cart.items.reduce((acc, item) => {
+      return acc + item.quantity;
+    }, 0);
+    cart.totalPrice = totalPrice;
 
     await cart.save();
     res.json({
