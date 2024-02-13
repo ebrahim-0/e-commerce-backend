@@ -6,7 +6,7 @@ const authRoute = require("./routes/route");
 const cors = require("cors");
 
 const app = express();
-const PORT = 8000;
+const PORT = 8000 || process.env.PORT;
 connectDB();
 
 app.use(bodyParser.json({ extended: true }));
