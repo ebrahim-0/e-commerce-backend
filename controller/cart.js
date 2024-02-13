@@ -245,6 +245,7 @@ const addToCart = async (req, res) => {
         quantity,
         product,
       });
+      message = "Product added successfully to Your cart";
     }
 
     // Populate product details for all items in cart
