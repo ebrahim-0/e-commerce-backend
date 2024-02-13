@@ -20,26 +20,6 @@ const productDetails = async (req, res) => {
     image,
   } = req.body;
 
-  console.log("Received product data:", req.body);
-  console.log("Received product data in Details:", {
-    asin,
-    product_details,
-    product_technical_details,
-    product_information,
-    savings_percentage,
-    savings_price,
-    title,
-    url,
-    product_description,
-    price,
-    original_price,
-    is_renewed,
-    important_information,
-    what_in_the_box,
-    about_this_product,
-    image,
-  });
-
   try {
     const existingProduct = await ProductDetails.findOne({ asin });
 
