@@ -19,16 +19,20 @@ const addToCart = async (req, res) => {
   const userId = req.user._id;
   const asin = req.body.asin;
   const quantity = req.body.quantity || 1;
+  let message = "";
 
   try {
     let cart = await Cart.findOne({ userId });
     if (!cart) {
       cart = new Cart({ userId, items: [] });
+      message = "Product added successfully to Your cart";
     }
 
     const existingItem = cart.items.find((item) => item.asin === asin);
     if (existingItem) {
       existingItem.quantity += quantity;
+
+      message = "Product quantity added one more to Your cart";
     } else {
       cart.items.push({ asin, quantity });
     }
@@ -37,7 +41,7 @@ const addToCart = async (req, res) => {
     await cart.save();
 
     res.json({
-      message: "Product added successfully to Your cart",
+      message,
       cart,
       numberOfItems: cart.items.length,
     });
@@ -114,7 +118,7 @@ const decrementQuantity = async (req, res) => {
 
     await cart.save();
     res.json({
-      message: "Product quantity updated successfully in Your cart",
+      message: "Product quantity subtracted one more from Your cart",
       cart,
       numberOfItems: cart.items.length,
     });
