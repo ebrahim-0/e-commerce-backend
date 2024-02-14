@@ -14,8 +14,12 @@ const {
   decrementQuantity,
 } = require("../controller/cart.js");
 const getProduct = require("../controller/getProduct.js");
+const payment = require("../controller/stripe.js");
 
 const router = express.Router();
+
+// Route to make payment
+router.post("/checkout-session/:cartId", payment);
 
 // Route to add a product
 
