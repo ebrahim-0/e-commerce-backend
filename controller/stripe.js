@@ -1,3 +1,4 @@
+const { json } = require("body-parser");
 const Cart = require("../models/Cart");
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
@@ -5,13 +6,13 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const payment = async (req, res) => {
   const { cartId } = req.params;
   const { url } = req.query;
+  const { shippingAddress } = req.body;
 
   try {
     const cart = await Cart.findById(cartId);
     if (!cart) {
       return res.status(404).json({ error: "Cart not found" });
     }
-
     const lineItems = cart.items.map((item) => ({
       price_data: {
         currency: "usd",
@@ -23,16 +24,15 @@ const payment = async (req, res) => {
       },
       quantity: item.quantity,
     }));
-
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       line_items: lineItems,
       mode: "payment",
       success_url: `${url}/success`,
       cancel_url: `${url}/cancel`,
+      metadata: shippingAddress,
     });
-
-    res.json({ id: session.id, session });
+    res.json({ id: session.id, session, status: "success" });
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
