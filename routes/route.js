@@ -15,11 +15,16 @@ const {
 } = require("../controller/cart.js");
 const getProduct = require("../controller/getProduct.js");
 const payment = require("../controller/stripe.js");
+const order = require("../controller/order.js");
 
 const router = express.Router();
 
 // Route to make payment
-router.post("/checkout-session/:cartId", payment);
+router.post("/checkout-session/:cartId", authenticate, payment);
+
+// Route to get all orders
+
+router.get("/orders", authenticate, order);
 
 // Route to add a product
 

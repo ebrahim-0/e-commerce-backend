@@ -23,6 +23,10 @@ const cart = async (req, res) => {
     // Calculate total price
     cart.totalPrice = calculateTotalPrice(cart.items);
 
+    cart.numberOfCartItem = cart.items.length;
+
+    await cart.save();
+
     res.json(cart);
   } catch (err) {
     console.error(err);
@@ -79,6 +83,8 @@ const addToCart = async (req, res) => {
 
     cart.updatedAt = new Date();
 
+    cart.numberOfCartItem = cart.items.length;
+
     await cart.save();
 
     res.json({
@@ -121,6 +127,8 @@ const deleteFromCart = async (req, res) => {
 
     cart.updatedAt = new Date();
 
+    cart.numberOfCartItem = cart.items.length;
+
     await cart.save();
 
     res.json({
@@ -161,6 +169,8 @@ const decrementQuantity = async (req, res) => {
 
     // Calculate total price
     cart.totalPrice = calculateTotalPrice(cart.items);
+
+    cart.numberOfCartItem = cart.items.length;
 
     cart.updatedAt = new Date();
 

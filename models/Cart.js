@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const cartSchema = new mongoose.Schema({
   userId: String,
+  numberOfCartItem: Number,
   createdAt: {
     type: Date,
     default: Date.now,
