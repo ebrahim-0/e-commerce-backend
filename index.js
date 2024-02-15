@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const authRoute = require("./routes/route");
 const cors = require("cors");
+const compression = require("compression");
 
 const app = express();
 const PORT = 8000 || process.env.PORT;
@@ -15,6 +16,8 @@ app.use(cookieParser());
 
 // Enable CORS for all routes
 app.use(cors());
+
+app.use(compression());
 
 app.use("/api", authRoute); // Updated part
 
