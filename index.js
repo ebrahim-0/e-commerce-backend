@@ -14,10 +14,10 @@ app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+app.use(compression());
+
 // Enable CORS for all routes
 app.use(cors());
-
-app.use(compression());
 
 app.use("/api", authRoute); // Updated part
 
