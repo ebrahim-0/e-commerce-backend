@@ -17,7 +17,14 @@ app.use(cookieParser());
 app.use(compression());
 
 // Enable CORS for all routes
-app.use(cors());
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    preflightContinue: false,
+  })
+);
 
 app.use("/api", authRoute); // Updated part
 
