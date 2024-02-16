@@ -70,9 +70,7 @@ const createUser = async (req, res) => {
         phoneNumber: user.phoneNumber,
       },
       process.env.SECRET_KEY,
-      {
-        expiresIn: "1 hour",
-      }
+      { expiresIn: process.env.TOKEN_EXPIRY }
     );
 
     res.cookie("token", token, {
